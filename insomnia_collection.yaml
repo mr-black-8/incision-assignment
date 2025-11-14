@@ -1,0 +1,201 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1763123995644
+  modified: 1763123995644
+  description: ""
+collection:
+  - url: https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/suggestions
+    name: Get suggestions
+    meta:
+      id: req_de3dfd46dae74c16be8cf50638a46078
+      created: 1763124072744
+      modified: 1763138810369
+      isPrivate: false
+      description: ""
+      sortKey: -1763124377002
+    method: GET
+    parameters:
+      - id: pair_505d4fbefbac472187fec07584162843
+        name: title
+        value: small widget
+        description: ""
+        disabled: false
+      - id: pair_7b8743bcb42845b1ac1fa2acde4a2fef
+        name: description
+        value: it does things and is small and green
+        description: ""
+        disabled: false
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/items
+    name: Create High quality Item
+    meta:
+      id: req_27c18985954944dfba36a97101dde6d6
+      created: 1763124245411
+      modified: 1763138804089
+      isPrivate: false
+      description: ""
+      sortKey: -1763124377077
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"title": "Small widget",
+        	"description": "It is small and green",
+        	"tags": ["misc"],
+        	"catagory": "widgets"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/items
+    name: Get PENDING items
+    meta:
+      id: req_c52c0a2ab92d48d6984cd50ea2720e69
+      created: 1763124376977
+      modified: 1763138674487
+      isPrivate: false
+      description: ""
+      sortKey: -1763124376977
+    method: GET
+    parameters:
+      - id: pair_c32677b18eb64459a0095222f3ca5ace
+        name: status
+        value: PENDING
+        description: ""
+        disabled: false
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/items
+    name: Create Low quality Item
+    meta:
+      id: req_0156b70746394c4a9fdc159f6107fa55
+      created: 1763124472620
+      modified: 1763138805683
+      isPrivate: false
+      description: ""
+      sortKey: -1763124377027
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"title": "big widget",
+        	"description": "Its big"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/items
+    name: Get APPROVED items
+    meta:
+      id: req_75c9b407e37342b68b65ef50a002aec4
+      created: 1763138694978
+      modified: 1763138697676
+      isPrivate: false
+      description: ""
+      sortKey: -1763124311194
+    method: GET
+    parameters:
+      - id: pair_c32677b18eb64459a0095222f3ca5ace
+        name: status
+        value: APPROVED
+        description: ""
+        disabled: false
+    headers:
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/items/:id
+    name: Approve PENDING item
+    meta:
+      id: req_d5163d0a8b084188b090876619d74faa
+      created: 1763138793299
+      modified: 1763138897082
+      isPrivate: false
+      description: ""
+      sortKey: -1763124344085.5
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"status": "APPROVED"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.0.0
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+    pathParameters:
+      - name: id
+        value: 98a28042-37cf-470e-9e36-a9b88f3a5c76
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1763124060123
+    modified: 1763124060123
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1763124060120
+    modified: 1763124060120
+    isPrivate: false
