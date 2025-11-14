@@ -73,7 +73,7 @@ export default class CatalogDDBClient {
         id,
         created_at: new Date().getTime(),
       },
-      ReturnValues: 'ALL_NEW'
+      ReturnValues: 'ALL_OLD'
     });
 
     const response = await this.docClient.send(command);
