@@ -64,20 +64,22 @@ export default class CatalogDDBClient {
 
   public async createItem(params: CreateItemParams): Promise<Item> {
     const id = uuid();
+    const item = {
+      ...params,
+      id,
+      created_at: new Date().getTime(),
+    };
     const command = new PutCommand({
       TableName: DDB_TABLE_NAME,
       Item: {
-        ...params,
+        ...item,
         pk: `ITEM#${id}`,
         sk: 'METADATA',
-        id,
-        created_at: new Date().getTime(),
       },
-      ReturnValues: 'ALL_OLD'
     });
 
-    const response = await this.docClient.send(command);
-    const item = omit(response.Attributes || {}, ['pk', 'sk']);
+    await this.docClient.send(command);
+
     return item as Item;
   }
 
