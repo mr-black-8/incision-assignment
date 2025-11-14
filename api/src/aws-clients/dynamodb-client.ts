@@ -73,6 +73,7 @@ export default class CatalogDDBClient {
         id,
         created_at: new Date().getTime(),
       },
+      ReturnValues: 'ALL_NEW'
     });
 
     const response = await this.docClient.send(command);
@@ -84,7 +85,7 @@ export default class CatalogDDBClient {
     const time = new Date().getTime();
     const command = new UpdateCommand({
       TableName: DDB_TABLE_NAME,
-      Key: { pk: `ITEM#${params.id}` },
+      Key: { pk: `ITEM#${params.id}`, sk: 'METADATA' },
       UpdateExpression: 'SET #status = :status, approved_by = :approver, updated_at = :time',
       ExpressionAttributeNames: {
         '#status': 'status',
