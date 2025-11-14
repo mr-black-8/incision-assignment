@@ -6,7 +6,7 @@ meta:
   modified: 1763123995644
   description: ""
 collection:
-  - url: https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/suggestions
+  - url: https://incision-assesment.boz.black/suggestions
     name: Get suggestions
     meta:
       id: req_de3dfd46dae74c16be8cf50638a46078
@@ -38,7 +38,7 @@ collection:
         send: true
         store: true
       rebuildPath: true
-  - url: https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/items
+  - url: https://incision-assesment.boz.black/items
     name: Create High quality Item
     meta:
       id: req_27c18985954944dfba36a97101dde6d6
@@ -70,7 +70,7 @@ collection:
         send: true
         store: true
       rebuildPath: true
-  - url: https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/items
+  - url: https://incision-assesment.boz.black/items
     name: Get PENDING items
     meta:
       id: req_c52c0a2ab92d48d6984cd50ea2720e69
@@ -97,7 +97,7 @@ collection:
         send: true
         store: true
       rebuildPath: true
-  - url: https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/items
+  - url: https://incision-assesment.boz.black/items
     name: Create Low quality Item
     meta:
       id: req_0156b70746394c4a9fdc159f6107fa55
@@ -127,7 +127,7 @@ collection:
         send: true
         store: true
       rebuildPath: true
-  - url: https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/items
+  - url: https://incision-assesment.boz.black/items
     name: Get APPROVED items
     meta:
       id: req_75c9b407e37342b68b65ef50a002aec4
@@ -154,7 +154,7 @@ collection:
         send: true
         store: true
       rebuildPath: true
-  - url: https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/items/:id
+  - url: https://incision-assesment.boz.black/items/:id
     name: Approve PENDING item
     meta:
       id: req_d5163d0a8b084188b090876619d74faa
