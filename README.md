@@ -1,6 +1,6 @@
 # Catalog Scoring & Suggestions API
 
-Live Demo: https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/docs  
+Live Demo: https://incision-assesment.boz.black/docs  
 Architecture: https://excalidraw.com/#json=P_SBj9kr_-jkYNU7R4Uvs,LLlIpW2dcf-sli1WL3utvQ
 
 ### Deploy:
@@ -22,9 +22,9 @@ Insomnia collection available in `./insomnia_collection.yaml`
 
 The API provides catalog item management with AI-powered suggestions for improving item titles and descriptions. All endpoints are available at the base URL with `/prod` prefix.
 
-**Base URL:** `https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod`
+**Base URL:** `https://incision-assesment.boz.black`
 
-**Interactive Documentation:** [Swagger UI](https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/docs)
+**Interactive Documentation:** [Swagger UI](https://incision-assesment.boz.black/docs)
 
 ---
 
@@ -100,7 +100,7 @@ Retrieves all catalog items filtered by status.
 
 **Example:**
 ```bash
-curl "https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/items?status=PENDING"
+curl "https://incision-assesment.boz.black/items?status=PENDING"
 ```
 
 ---
@@ -134,7 +134,7 @@ Updates the status of a catalog item (e.g., approve or reject pending items).
 **Example:**
 ```bash
 curl -X PATCH \
-  "https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/items/abc123" \
+  "https://incision-assesment.boz.black/items/abc123" \
   -H "Content-Type: application/json" \
   -d '{"id": "abc123", "status": "APPROVED"}'
 ```
@@ -172,7 +172,7 @@ Generates improved title and description suggestions using AWS Bedrock AI (Amazo
 
 **Example:**
 ```bash
-curl "https://vfcrkfxxqf.execute-api.eu-central-1.amazonaws.com/prod/suggestions?title=Old%20Title&description=Short%20desc"
+curl "https://incision-assesment.boz.black/suggestions?title=Old%20Title&description=Short%20desc"
 ```
 
 ---

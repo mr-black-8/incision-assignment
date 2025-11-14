@@ -4,11 +4,7 @@ import * as ApiGateway from 'aws-cdk-lib/aws-apigateway';
 import * as Lambda from 'aws-cdk-lib/aws-lambda';
 import * as DynamoDB from 'aws-cdk-lib/aws-dynamodb'
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
-import { Certificate, CertificateValidation } from 'aws-cdk-lib/aws-certificatemanager';
 import { cleanEnv, str } from 'envalid';
-import { AllowedMethods, CachedMethods, CachePolicy, Distribution, OriginRequestCookieBehavior, OriginRequestHeaderBehavior, OriginRequestPolicy, OriginRequestQueryStringBehavior } from 'aws-cdk-lib/aws-cloudfront';
-import { CloudFrontToApiGateway } from '@aws-solutions-constructs/aws-cloudfront-apigateway';
-import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 
 process.loadEnvFile();
 const env = cleanEnv(process.env, {
@@ -55,11 +51,6 @@ export class IncisionAssignmentStack extends cdk.Stack {
     const catalogApi = new ApiGateway.LambdaRestApi(this, 'ApiGatewayEndpoint', {
       handler: nestFunction,
       restApiName: 'IncisionAssignmentApi',
-      // defaultCorsPreflightOptions: {
-      //   allowOrigins: ApiGateway.Cors.ALL_ORIGINS,
-      //   allowHeaders: ApiGateway.Cors.DEFAULT_HEADERS,
-      //   allowMethods: ApiGateway.Cors.ALL_METHODS,
-      // },
     });
 
     const ddbTable = new DynamoDB.TableV2(this, 'IncisionAssignmentTable', {
@@ -87,53 +78,5 @@ export class IncisionAssignmentStack extends cdk.Stack {
     });
 
     ddbTable.grantReadWriteData(nestFunction);
-
-    // const apiCachePolicy = new CachePolicy(this, 'ApiCachePolicy', {
-    //   cachePolicyName: 'ApiCachePolicy',
-    //   headerBehavior: { behavior: 'whitelist', headers: ['Origin'] },
-    //   queryStringBehavior: OriginRequestQueryStringBehavior.all(),
-    //   cookieBehavior: OriginRequestCookieBehavior.all(),
-    //   minTtl: cdk.Duration.seconds(0),
-    //   defaultTtl: cdk.Duration.seconds(0),
-    //   maxTtl: cdk.Duration.seconds(1),
-    // });
-
-
-    // const allHeadersOriginRequestPolicy = new OriginRequestPolicy(this, 'AllHeadersOriginRequestPolicy', {
-    //   originRequestPolicyName: 'AllHeadersOriginRequestPolicy',
-    //   headerBehavior: OriginRequestHeaderBehavior.all(),
-    //   queryStringBehavior: OriginRequestQueryStringBehavior.all(),
-    //   cookieBehavior: OriginRequestCookieBehavior.all(),
-    // });
-
-    // const certificate = new Certificate(this, 'CloudFrontCertificate', {
-    //   domainName: 'incision-assesment.boz.black',
-    //   validation: CertificateValidation.fromDns(), // CDK will create Route53 records automatically if using Route53
-    // });
-
-    // const cfDist = new CloudFrontToApiGateway(this, 'IncisionAssignmentDistribution', {
-    //   existingApiGatewayObj: catalogApi,
-    //   cloudFrontDistributionProps: {
-    //     // domainNames: ['incision-assesment.boz.black'],
-    //     // certificate: certificate,
-    //     defaultBehavior: {
-    //       cachePolicy: apiCachePolicy,
-    //       originRequestPolicy: allHeadersOriginRequestPolicy,
-    //       allowedMethods: AllowedMethods.ALLOW_ALL,
-    //       cachedMethods: CachedMethods.CACHE_GET_HEAD,
-    //     },
-    //   }
-    // });
-
-    // const lambdaOrigin = new origins.RestApiOrigin(catalogApi)
-
-    // cfDist.cloudFrontWebDistribution.addBehavior(
-    //   '/docs/*',  // SwaggerModule static files
-    //   lambdaOrigin,
-    //   {
-    //     allowedMethods: AllowedMethods.ALLOW_GET_HEAD,
-    //     cachePolicy: CachePolicy.CACHING_OPTIMIZED,
-    //   }
-    // )
   }
 }

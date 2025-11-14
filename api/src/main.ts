@@ -24,7 +24,6 @@ async function bootstrap(): Promise<Server> {
     .setTitle('Incision Assesment: Catalog')
     .setDescription('Catalog of items with AI suggestions')
     .setVersion('0.1')
-    .addServer('/prod')
     .build();
   const docFactory = () => SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('docs', app, docFactory);
