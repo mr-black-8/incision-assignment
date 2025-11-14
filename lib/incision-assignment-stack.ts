@@ -41,6 +41,7 @@ export class IncisionAssignmentStack extends cdk.Stack {
       code: Lambda.Code.fromAsset('api/dist'),
       handler: 'main.handler',
       runtime: Lambda.Runtime.NODEJS_22_X,
+      timeout: cdk.Duration.seconds(30),
       environment: {
         DDB_ENDPOINT_URL: env.DDB_ENDPOINT_URL,
         DDB_TABLE_NAME: env.DDB_TABLE_NAME,
