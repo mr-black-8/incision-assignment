@@ -5,7 +5,7 @@ import { cleanEnv, str } from 'envalid';
 if (process.env.NODE_ENV === 'local') {
   process.loadEnvFile('../.env');
 }
-const { REGION } = cleanEnv(process.env, { REGION: str() });
+const { REGION, BEDROCK_MODEL_ID } = cleanEnv(process.env, { REGION: str(), BEDROCK_MODEL_ID: str() });
 
 export type Suggestions = {
   titles: string[];
@@ -24,7 +24,7 @@ const systemPrompt = [
 
 export default class AiSuggestionClient {
   private bedrockClient: BedrockRuntimeClient;
-  private modelId = 'eu.amazon.nova-micro-v1:0';
+  private modelId = BEDROCK_MODEL_ID;
   constructor() {
     this.bedrockClient = new BedrockRuntimeClient({ region: REGION });
   }
@@ -44,7 +44,6 @@ export default class AiSuggestionClient {
       system: systemPrompt,
       inferenceConfig: { maxTokens: 512, topP: 0.9, temperature: 0.7 },
     });
-    console.log(payload);
 
     const command = new InvokeModelCommand({
       modelId: this.modelId,
@@ -53,9 +52,8 @@ export default class AiSuggestionClient {
     });
 
     const response = await this.bedrockClient.send(command);
-    console.log(response);
     const decodedResponseBody = new TextDecoder().decode(response.body);
-    console.log(decodedResponseBody);
+
     // TODO: Implement error handling and retry for invalid JSON response
     const responseBody = JSON.parse(decodedResponseBody) as { output: { message: { content: { text: string }[] } } };
     const result = JSON.parse(responseBody.output.message.content[0].text) as ExpectedAIResponse;

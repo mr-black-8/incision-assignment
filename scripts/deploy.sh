@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd api
 npm ci --omit dev
 npm run build

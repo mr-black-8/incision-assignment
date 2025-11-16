@@ -14,7 +14,7 @@ export class ItemsController {
   }
 
   @Get()
-  findAll(@Query('status') status: string) {
+  findAll(@Query('status') status: Status) {
     if (!Object.keys(Status).includes(status)) {
       return `Invalid status: ${status}`;
     }

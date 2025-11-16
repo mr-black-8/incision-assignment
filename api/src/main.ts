@@ -31,7 +31,7 @@ async function bootstrap(): Promise<Server> {
   await app.init();
 
   if (process.env.NODE_ENV === 'local') {
-    await app.listen(process.env.PORT ?? 3000);
+    await new Promise<void>(resolve => app.listen(process.env.PORT ?? 3000, resolve));
   }
 
   return createServer(expressApp);
@@ -43,4 +43,8 @@ export async function handler(event: any, context: Context) {
   }
 
   return proxy(server, event, context, 'PROMISE').promise;
+}
+
+if (process.env.NODE_ENV === 'local') {
+  bootstrap();
 }

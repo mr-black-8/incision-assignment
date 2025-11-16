@@ -3,6 +3,31 @@
 Live Demo: https://incision-assesment.boz.black/docs  
 Architecture: https://excalidraw.com/#json=P_SBj9kr_-jkYNU7R4Uvs,LLlIpW2dcf-sli1WL3utvQ
 
+### Local Development
+Set your AWS profile in your working environment
+> [!WARNING]
+> API Calls to AWS Bedrock are made when running locally. Small cost may be incurred if the account used has surpassed Bedrock's free tier limit.
+
+Set up [DynamoDB Local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html#docker). The official image from AWS on [Docker hub](https://hub.docker.com/r/amazon/dynamodb-local) is quick and easy.
+```sh
+docker run -p 8000:8000 amazon/dynamodb-local
+```
+
+Create a .env file and update the DDB_ENDPOINT_URL to use DyanmoDB local (`http://localhost:8000` by default)
+```sh
+cp .env.example .env
+``` 
+
+Create DynamoDB local table
+```sh
+bash ./scripts/create-local-ddb-tables.sh
+```
+
+Run the NestJS server
+```sh
+npm run start:dev
+```
+
 ### Deploy:
 Prerequisits:
 ```sh
